@@ -17,12 +17,13 @@ class ViewController: UIViewController {
         if clock > 0 {
             clock -= 1
             clockLabel.text = String(clock)
-            ) else {
+        } else {
                 timer.invalidate()
                 isRunning = false
         }
-    }
-    @IBOutlet weak var timer: UILabel!
+        }
+    
+    @IBOutlet weak var clockLabel: UILabel!
     
    
     @IBAction func pauseTimer(_ sender: Any) {
@@ -37,7 +38,6 @@ class ViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:
                 #selector(ViewController.runTimer), userInfo: nil, repeats: true)
             isRunning = true
-            )
         }
     }
     @IBAction func decreaseByTen(_ sender: Any) {

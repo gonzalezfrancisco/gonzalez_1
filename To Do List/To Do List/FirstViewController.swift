@@ -9,6 +9,7 @@
 import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var table: UITableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskList.count
     }
@@ -22,16 +23,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 
     var taskList: [String] = []
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -47,8 +39,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             [String] {
             taskList = tempTask
        
-        //table.reloadData()
+        table.reloadData()
         }
+   
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                taskList.remove(at: indexPath.row)
+                table.reloadData()
+                UserDefaults.standard.set(taskList, forKey: "taskList")
+            }
+        }
+    
     }
 }
 
